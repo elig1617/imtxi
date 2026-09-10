@@ -13,7 +13,7 @@ type Props = {
 
 const styles = {
   primary:
-    "bg-accent text-ground hover:bg-[#8a6d45] border border-transparent",
+    "bg-accent text-ground hover:bg-accent/90 border border-transparent",
   secondary:
     "bg-transparent text-navy border border-navy/25 hover:border-navy/50",
   ghost: "bg-transparent text-navy border border-transparent hover:bg-navy/5",

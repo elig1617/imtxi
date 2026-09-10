@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { joinLinks, navLinks, siteConfig } from "@/lib/site";
+import { hasFoundingSponsor, joinLinks, navLinks, siteConfig } from "@/lib/site";
 import { NewsletterForm } from "./NewsletterForm";
 
 export function Footer() {
@@ -20,12 +20,14 @@ export function Footer() {
               Building evaluation standards, practitioner credentials, facility
               accreditation, and an outcomes registry for immersive therapeutics.
             </p>
-            <p className="mt-4 text-sm text-on-dark/65">
-              Founding sponsorship: {siteConfig.foundingSponsor}. Founding
-              sponsors hold no vote on standards content and receive no
-              preference in certification, accreditation, or classification
-              decisions.
-            </p>
+            {hasFoundingSponsor() && (
+              <p className="mt-4 text-sm text-on-dark/65">
+                Founding sponsorship: {siteConfig.foundingSponsor}. Founding
+                sponsors hold no vote on standards content and receive no
+                preference in certification, accreditation, or classification
+                decisions.
+              </p>
+            )}
           </div>
 
           <div className="md:col-span-3">

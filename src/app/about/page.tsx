@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
-import { siteConfig } from "@/lib/site";
+import { hasFoundingSponsor, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -63,20 +63,22 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-rule">
-        <h2 className="text-2xl md:text-3xl">Founding sponsorship</h2>
-        <div className="prose-imtxi measure mt-6 text-muted">
-          <p>
-            The Institute&apos;s formation was funded by{" "}
-            <strong className="font-medium text-navy">
-              {siteConfig.foundingSponsor}
-            </strong>
-            . Founding sponsors are disclosed here, hold no vote on standards
-            content, and receive no preference in certification, accreditation,
-            or classification decisions.
-          </p>
-        </div>
-      </Section>
+      {hasFoundingSponsor() && (
+        <Section className="border-t border-rule">
+          <h2 className="text-2xl md:text-3xl">Founding sponsorship</h2>
+          <div className="prose-imtxi measure mt-6 text-muted">
+            <p>
+              The Institute&apos;s formation was funded by{" "}
+              <strong className="font-medium text-navy">
+                {siteConfig.foundingSponsor}
+              </strong>
+              . Founding sponsors are disclosed here, hold no vote on standards
+              content, and receive no preference in certification, accreditation,
+              or classification decisions.
+            </p>
+          </div>
+        </Section>
+      )}
     </>
   );
 }

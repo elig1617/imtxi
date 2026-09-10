@@ -11,8 +11,15 @@ export const siteConfig = {
     council: "council@imtxi.com",
     standards: "standards@imtxi.com",
   },
-  foundingSponsor: "[Founding Sponsor]",
+  /** Set to the disclosed entity name when ready; leave empty to hide sponsor copy. */
+  foundingSponsor: "",
 };
+
+/** True when a real founding sponsor name is configured (not empty / placeholder). */
+export function hasFoundingSponsor(): boolean {
+  const name = siteConfig.foundingSponsor.trim();
+  return name.length > 0 && name !== "[Founding Sponsor]";
+}
 
 export const navLinks = [
   { href: "/framework", label: "Framework" },

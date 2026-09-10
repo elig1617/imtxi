@@ -44,7 +44,7 @@ export default function FrameworkPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Anchor asset"
+        eyebrow="Methodology"
         title="The Immersive Therapeutics Evaluation Framework"
         description="A four-tier classification for immersive therapeutic products, based on regulatory status and clinical evidence."
       />
