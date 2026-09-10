@@ -17,14 +17,15 @@ export default function NewsPage() {
         description="Institute updates on standards, coding, and recruitment."
       />
       <Section>
-        <article className="max-w-3xl border-b border-rule pb-10">
-          <p className="text-sm text-muted">
+        <article className="surface-card max-w-3xl p-6 md:p-10">
+          <p className="text-sm font-medium text-muted">
             <time dateTime="2026-09-10">September 10, 2026</time>
           </p>
-          <h2 className="mt-2 text-2xl md:text-3xl">
+          <div className="accent-rule my-5" aria-hidden />
+          <h2 className="text-2xl md:text-3xl">
             Institute for Immersive Therapeutics launches
           </h2>
-          <div className="prose-imtxi mt-5 space-y-4 text-muted">
+          <div className="prose-imtxi mt-6 space-y-4 text-muted">
             <p>
               The Institute for Immersive Therapeutics (IMTXI) is launching as an
               independent nonprofit standards body for extended reality in

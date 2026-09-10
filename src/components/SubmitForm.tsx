@@ -39,11 +39,12 @@ export function SubmitForm({
 
   if (status === "ok") {
     return (
-      <div className="rounded-sm border border-accent/40 bg-accent/5 px-5 py-6">
-        <p className="font-medium text-navy">{successMessage}</p>
+      <div className="rounded-sm border border-accent/35 bg-accent/[0.07] px-5 py-7">
+        <p className="font-serif text-lg font-semibold text-navy">Received</p>
+        <p className="mt-2 text-sm leading-relaxed text-navy/80">{successMessage}</p>
         <button
           type="button"
-          className="mt-3 text-sm text-teal underline underline-offset-2"
+          className="mt-4 text-sm font-medium text-teal underline underline-offset-2"
           onClick={() => setStatus("idle")}
         >
           Submit another response
@@ -55,10 +56,11 @@ export function SubmitForm({
   return (
     <form onSubmit={onSubmit} className="space-y-5">
       {children}
-      <div className="pt-2">
+      <div className="flex flex-wrap items-center gap-4 border-t border-rule pt-5">
         <Button type="submit" disabled={status === "loading"}>
           {status === "loading" ? "Submitting…" : "Submit"}
         </Button>
+        <p className="trust-line">We never sell contact information.</p>
       </div>
       {status === "error" && (
         <p className="text-sm text-red-700">

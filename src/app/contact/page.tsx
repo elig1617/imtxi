@@ -10,6 +10,13 @@ export const metadata: Metadata = {
   description: "Contact the Institute for Immersive Therapeutics.",
 };
 
+const emails = [
+  { label: "General", value: siteConfig.email.general },
+  { label: "Media", value: siteConfig.email.media },
+  { label: "Council", value: siteConfig.email.council },
+  { label: "Standards", value: siteConfig.email.standards },
+];
+
 export default function ContactPage() {
   return (
     <>
@@ -19,83 +26,64 @@ export default function ContactPage() {
         description="General inquiries, media, council applications, and standards participation."
       />
       <Section>
-        <div className="grid gap-12 md:grid-cols-2">
-          <div>
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
             <h2 className="text-xl">Direct email</h2>
-            <ul className="mt-5 space-y-3 text-muted">
-              <li>
-                <span className="block text-xs uppercase tracking-[0.15em] text-muted">
-                  General
-                </span>
-                <a
-                  href={`mailto:${siteConfig.email.general}`}
-                  className="text-teal underline underline-offset-2"
-                >
-                  {siteConfig.email.general}
-                </a>
-              </li>
-              <li>
-                <span className="block text-xs uppercase tracking-[0.15em] text-muted">
-                  Media
-                </span>
-                <a
-                  href={`mailto:${siteConfig.email.media}`}
-                  className="text-teal underline underline-offset-2"
-                >
-                  {siteConfig.email.media}
-                </a>
-              </li>
-              <li>
-                <span className="block text-xs uppercase tracking-[0.15em] text-muted">
-                  Council
-                </span>
-                <a
-                  href={`mailto:${siteConfig.email.council}`}
-                  className="text-teal underline underline-offset-2"
-                >
-                  {siteConfig.email.council}
-                </a>
-              </li>
-              <li>
-                <span className="block text-xs uppercase tracking-[0.15em] text-muted">
-                  Standards
-                </span>
-                <a
-                  href={`mailto:${siteConfig.email.standards}`}
-                  className="text-teal underline underline-offset-2"
-                >
-                  {siteConfig.email.standards}
-                </a>
-              </li>
+            <ul className="mt-6 space-y-4">
+              {emails.map((e) => (
+                <li key={e.value} className="surface-card px-4 py-3.5">
+                  <span className="block text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">
+                    {e.label}
+                  </span>
+                  <a
+                    href={`mailto:${e.value}`}
+                    className="mt-1 inline-block text-teal underline underline-offset-2"
+                  >
+                    {e.value}
+                  </a>
+                </li>
+              ))}
             </ul>
+            <p className="trust-line mt-6">
+              We respond to institutional inquiries as promptly as capacity
+              allows. Council and membership forms are preferred for those
+              pathways.
+            </p>
           </div>
 
-          <div className="rounded-sm border border-rule p-6">
-            <h2 className="mb-5 text-xl">Message</h2>
-            <SubmitForm action="/api/contact">
-              <FormField label="Name" name="name" required />
-              <FormField label="Email" name="email" type="email" required />
-              <FormField
-                label="Topic"
-                name="topic"
-                as="select"
-                required
-                options={[
-                  { value: "general", label: "General" },
-                  { value: "media", label: "Media" },
-                  { value: "council", label: "Council" },
-                  { value: "standards", label: "Standards participation" },
-                  { value: "other", label: "Other" },
-                ]}
-              />
-              <FormField
-                label="Message"
-                name="message"
-                as="textarea"
-                rows={5}
-                required
-              />
-            </SubmitForm>
+          <div className="lg:col-span-8">
+            <div className="form-panel p-6 md:p-8">
+              <h2 className="mb-1 font-serif text-xl font-semibold">Message</h2>
+              <p className="mb-6 text-sm text-muted">
+                Prefer a form? Send a note and we will route it to the right desk.
+              </p>
+              <SubmitForm action="/api/contact">
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <FormField label="Name" name="name" required />
+                  <FormField label="Email" name="email" type="email" required />
+                </div>
+                <FormField
+                  label="Topic"
+                  name="topic"
+                  as="select"
+                  required
+                  options={[
+                    { value: "general", label: "General" },
+                    { value: "media", label: "Media" },
+                    { value: "council", label: "Council" },
+                    { value: "standards", label: "Standards participation" },
+                    { value: "other", label: "Other" },
+                  ]}
+                />
+                <FormField
+                  label="Message"
+                  name="message"
+                  as="textarea"
+                  rows={5}
+                  required
+                />
+              </SubmitForm>
+            </div>
           </div>
         </div>
       </Section>

@@ -8,6 +8,8 @@
   --imtxi-muted: #5A6570;
   --imtxi-on-dark: #FAF9F6;
   --imtxi-rule: rgba(16, 36, 62, 0.12);
+  --imtxi-tint: rgba(16, 36, 62, 0.035);
+  --imtxi-tint-deep: rgba(16, 36, 62, 0.055);
 }
 
 @theme inline {
@@ -18,6 +20,7 @@
   --color-muted: #5A6570;
   --color-on-dark: #FAF9F6;
   --color-rule: rgba(16, 36, 62, 0.12);
+  --color-tint: rgba(16, 36, 62, 0.035);
   --font-serif: var(--font-source-serif);
   --font-sans: var(--font-inter);
 }
@@ -32,6 +35,8 @@ body {
   font-family: var(--font-inter), Inter, system-ui, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -40,8 +45,8 @@ h3,
 h4 {
   font-family: var(--font-source-serif), "Source Serif 4", Georgia, serif;
   font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
   color: var(--imtxi-navy);
 }
 
@@ -51,7 +56,7 @@ a {
 }
 
 ::selection {
-  background: rgba(154, 123, 79, 0.25);
+  background: rgba(154, 123, 79, 0.28);
 }
 
 .prose-imtxi p + p {
@@ -66,4 +71,99 @@ a {
 
 .measure {
   max-width: 68ch;
+}
+
+/* Institutional utilities */
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--imtxi-muted);
+}
+
+.hairline {
+  height: 1px;
+  background: var(--imtxi-rule);
+}
+
+.accent-rule {
+  width: 2.5rem;
+  height: 2px;
+  background: var(--imtxi-accent);
+}
+
+.surface-card {
+  background: var(--imtxi-ground);
+  border: 1px solid var(--imtxi-rule);
+  border-radius: 2px;
+  box-shadow: 0 1px 0 rgba(16, 36, 62, 0.04);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.surface-card-hover:hover {
+  border-color: rgba(16, 36, 62, 0.28);
+  box-shadow:
+    0 1px 0 rgba(16, 36, 62, 0.04),
+    0 10px 28px -18px rgba(16, 36, 62, 0.35);
+}
+
+.bg-tint {
+  background: linear-gradient(
+    180deg,
+    rgba(16, 36, 62, 0.04) 0%,
+    rgba(250, 249, 246, 1) 100%
+  );
+}
+
+.bg-tint-flat {
+  background: rgba(16, 36, 62, 0.035);
+}
+
+.table-imtxi {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.table-imtxi thead {
+  background: var(--imtxi-navy);
+  color: var(--imtxi-on-dark);
+}
+
+.table-imtxi th {
+  padding: 0.875rem 1.125rem;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.table-imtxi td {
+  padding: 1.125rem;
+  vertical-align: top;
+  border-top: 1px solid var(--imtxi-rule);
+}
+
+.table-imtxi tbody tr:nth-child(even) {
+  background: rgba(16, 36, 62, 0.025);
+}
+
+.form-panel {
+  background: var(--imtxi-ground);
+  border: 1px solid var(--imtxi-rule);
+  border-radius: 2px;
+  box-shadow:
+    0 1px 0 rgba(16, 36, 62, 0.04),
+    0 18px 40px -28px rgba(16, 36, 62, 0.35);
+}
+
+.trust-line {
+  font-size: 0.8125rem;
+  color: var(--imtxi-muted);
+  line-height: 1.5;
 }

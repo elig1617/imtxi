@@ -30,13 +30,13 @@ export function NewsletterForm({ variant = "light" }: Props) {
 
   const inputCls =
     variant === "dark"
-      ? "border-white/25 bg-teal text-on-dark placeholder:text-on-dark/50"
-      : "border-navy/20 bg-ground text-navy placeholder:text-muted";
+      ? "border-white/25 bg-teal/40 text-on-dark placeholder:text-on-dark/45 focus:border-accent focus:ring-accent/30"
+      : "border-navy/15 bg-ground text-navy placeholder:text-muted/70 focus:border-accent focus:ring-accent/20";
 
   return (
     <div>
       <p
-        className={`mb-3 text-sm ${
+        className={`mb-3 text-sm leading-relaxed ${
           variant === "dark" ? "text-on-dark/80" : "text-muted"
         }`}
       >
@@ -54,17 +54,27 @@ export function NewsletterForm({ variant = "light" }: Props) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@institution.edu"
-          className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none focus:border-accent ${inputCls}`}
+          className={`w-full rounded-sm border px-3.5 py-2.5 text-sm outline-none focus:ring-2 ${inputCls}`}
         />
         <Button type="submit" disabled={status === "loading"} className="shrink-0">
           {status === "loading" ? "Sending…" : "Subscribe"}
         </Button>
       </form>
       {status === "ok" && (
-        <p className="mt-2 text-sm text-accent">You are subscribed. Thank you.</p>
+        <p
+          className={`mt-2 text-sm ${
+            variant === "dark" ? "text-accent" : "text-teal"
+          }`}
+        >
+          You are subscribed. Thank you.
+        </p>
       )}
       {status === "error" && (
-        <p className="mt-2 text-sm text-red-300">
+        <p
+          className={`mt-2 text-sm ${
+            variant === "dark" ? "text-red-300" : "text-red-700"
+          }`}
+        >
           Something went wrong. Please try again.
         </p>
       )}

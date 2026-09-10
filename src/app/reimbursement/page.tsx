@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/Button";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
+import { StatusBadge } from "@/components/StatusBadge";
 
 export const metadata: Metadata = {
   title: "Coding & Coverage",
@@ -10,6 +11,30 @@ export const metadata: Metadata = {
 };
 
 const LAST_UPDATED = "September 10, 2026";
+
+const statusCards = [
+  {
+    title: "Device coding",
+    code: "HCPCS E1905",
+    status: "In use / variable",
+    tone: "progress" as const,
+    body: "Discussed for certain VR CBT devices used for pain. Coverage varies by DME MAC and plan. Not a professional delivery code.",
+  },
+  {
+    title: "Procedure coding",
+    code: "CPT",
+    status: "No dedicated code",
+    tone: "caution" as const,
+    body: "No CPT specific to immersive therapy delivery. Clinics may use existing timed therapy codes only when descriptors are met — audit risk otherwise.",
+  },
+  {
+    title: "Commercial coverage",
+    code: "Payer policy",
+    status: "Uneven",
+    tone: "caution" as const,
+    body: "Some plans address specific FDA-authorized devices; many remain silent on XR-delivered therapy as a professional service.",
+  },
+];
 
 const wcRows = [
   {
@@ -60,17 +85,40 @@ export default function ReimbursementPage() {
       />
 
       <Section>
-        <p className="text-sm text-muted">
-          Last updated: <time dateTime="2026-09-10">{LAST_UPDATED}</time>
-        </p>
-        <p className="measure mt-4 text-sm text-muted">
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-muted">
+            Last updated:{" "}
+            <time dateTime="2026-09-10" className="font-medium text-navy">
+              {LAST_UPDATED}
+            </time>
+          </p>
+          <StatusBadge tone="progress">Monthly cadence</StatusBadge>
+        </div>
+        <p className="measure text-sm leading-relaxed text-muted">
           This page summarizes publicly discussed coding pathways and known
           coverage gaps. It is not billing advice. Always confirm with current
           payer policy, counsel, and specialty societies.
         </p>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {statusCards.map((card) => (
+            <article key={card.title} className="surface-card flex flex-col p-6">
+              <p className="eyebrow mb-3">{card.title}</p>
+              <p className="font-serif text-2xl font-semibold text-navy">
+                {card.code}
+              </p>
+              <div className="mt-3">
+                <StatusBadge tone={card.tone}>{card.status}</StatusBadge>
+              </div>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
+                {card.body}
+              </p>
+            </article>
+          ))}
+        </div>
       </Section>
 
-      <Section className="border-t border-rule !pt-10">
+      <Section tint className="border-y border-rule">
         <h2 className="text-2xl md:text-3xl">Device coding — HCPCS E1905</h2>
         <div className="prose-imtxi measure mt-6 text-muted">
           <p>
@@ -90,7 +138,7 @@ export default function ReimbursementPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-rule">
+      <Section>
         <h2 className="text-2xl md:text-3xl">Procedure coding</h2>
         <div className="prose-imtxi measure mt-6 text-muted">
           <p>
@@ -110,33 +158,39 @@ export default function ReimbursementPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-rule">
-        <h2 className="text-2xl md:text-3xl">Workers&apos; compensation starter table</h2>
-        <p className="measure mt-4 text-sm text-muted">
+      <Section tint className="border-y border-rule">
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="eyebrow mb-3">Workers&apos; compensation</p>
+            <h2 className="text-2xl md:text-3xl">Six-state starter table</h2>
+          </div>
+        </div>
+        <p className="measure mt-2 text-sm text-muted">
           Initial six-state scan. Entries marked &ldquo;unknown&rdquo; mean we
           have not yet identified a clear published statewide policy specific to
           immersive therapy delivery. Expand and correct monthly.
         </p>
-        <div className="mt-6 overflow-x-auto rounded-sm border border-rule">
-          <table className="min-w-full text-left text-sm">
-            <thead className="bg-navy text-on-dark">
+        <div className="mt-8 overflow-x-auto rounded-sm border border-rule shadow-[0_1px_0_rgba(16,36,62,0.04)]">
+          <table className="table-imtxi min-w-full text-left">
+            <thead>
               <tr>
-                <th className="px-4 py-3 font-medium">State</th>
-                <th className="px-4 py-3 font-medium">Status</th>
-                <th className="px-4 py-3 font-medium">Notes</th>
+                <th>State</th>
+                <th>Status</th>
+                <th>Notes</th>
               </tr>
             </thead>
             <tbody>
-              {wcRows.map((row, i) => (
-                <tr
-                  key={row.state}
-                  className={i % 2 === 0 ? "bg-ground" : "bg-navy/[0.03]"}
-                >
-                  <td className="whitespace-nowrap px-4 py-4 align-top font-medium">
+              {wcRows.map((row) => (
+                <tr key={row.state}>
+                  <td className="whitespace-nowrap font-semibold text-navy">
                     {row.state}
                   </td>
-                  <td className="px-4 py-4 align-top text-muted">{row.status}</td>
-                  <td className="px-4 py-4 align-top text-muted">{row.notes}</td>
+                  <td className="text-muted">
+                    <span className="inline-flex rounded-sm border border-navy/10 bg-ground px-2 py-1 text-xs font-medium text-navy/80">
+                      {row.status}
+                    </span>
+                  </td>
+                  <td className="max-w-xl text-muted">{row.notes}</td>
                 </tr>
               ))}
             </tbody>
@@ -144,7 +198,7 @@ export default function ReimbursementPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-rule">
+      <Section>
         <h2 className="text-2xl md:text-3xl">Commercial coverage</h2>
         <div className="prose-imtxi measure mt-6 text-muted">
           <p>
@@ -158,9 +212,11 @@ export default function ReimbursementPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-rule">
-        <h2 className="text-2xl md:text-3xl">What the Institute is doing</h2>
-        <ul className="measure mt-6 space-y-3 text-muted">
+      <Section dark>
+        <h2 className="text-2xl text-on-dark md:text-3xl">
+          What the Institute is doing
+        </h2>
+        <ul className="measure mt-6 space-y-3 text-on-dark/85">
           <li className="flex gap-3">
             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
             <span>
@@ -188,7 +244,7 @@ export default function ReimbursementPage() {
               and policy observations via{" "}
               <a
                 href="mailto:info@imtxi.com"
-                className="text-teal underline underline-offset-2"
+                className="text-accent underline underline-offset-2"
               >
                 info@imtxi.com
               </a>
@@ -197,7 +253,9 @@ export default function ReimbursementPage() {
           </li>
         </ul>
         <div className="mt-8">
-          <Button href="/join/practitioners">Contribute as a founding practitioner</Button>
+          <Button href="/join/practitioners" variant="onDark">
+            Contribute as a founding practitioner
+          </Button>
         </div>
       </Section>
     </>

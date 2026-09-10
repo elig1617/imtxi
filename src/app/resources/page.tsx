@@ -121,8 +121,8 @@ export default function ResourcesPage() {
       />
 
       <Section>
-        <div className="rounded-sm border border-rule p-6 md:p-8">
-          <div className="mb-3 flex flex-wrap items-center gap-2">
+        <div className="surface-card p-6 md:p-8">
+          <div className="mb-4 flex flex-wrap items-center gap-3">
             <h2 className="text-2xl">White paper</h2>
             <StatusBadge tone="progress">Placeholder</StatusBadge>
           </div>
@@ -142,56 +142,61 @@ export default function ResourcesPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-rule">
+      <Section tint className="border-y border-rule">
+        <p className="eyebrow mb-3">Reference</p>
         <h2 className="text-2xl md:text-3xl">Glossary</h2>
-        <dl className="mt-8 divide-y divide-rule border-y border-rule">
+        <dl className="mt-8 divide-y divide-rule overflow-hidden rounded-sm border border-rule bg-ground">
           {glossary.map((g) => (
-            <div key={g.term} className="grid gap-2 py-4 md:grid-cols-12">
-              <dt className="font-medium md:col-span-4">{g.term}</dt>
-              <dd className="text-muted md:col-span-8">{g.def}</dd>
+            <div key={g.term} className="grid gap-2 px-5 py-4 md:grid-cols-12 md:px-6">
+              <dt className="font-semibold text-navy md:col-span-4">{g.term}</dt>
+              <dd className="text-sm leading-relaxed text-muted md:col-span-8">
+                {g.def}
+              </dd>
             </div>
           ))}
         </dl>
       </Section>
 
-      <Section className="border-t border-rule">
+      <Section>
+        <p className="eyebrow mb-3">Literature</p>
         <h2 className="text-2xl md:text-3xl">Bibliography stubs</h2>
         <p className="measure mt-4 text-sm text-muted">
           Starting citations for a curated VR therapy bibliography. Full PubMed
           list expanding.
         </p>
-        <ul className="mt-6 space-y-4">
+        <ul className="mt-8 space-y-4">
           {bibliography.map((b) => (
-            <li key={b.cite} className="border-l-2 border-accent/40 pl-4">
-              <p className="text-sm text-navy">{b.cite}</p>
-              <p className="mt-1 text-sm text-muted">{b.note}</p>
+            <li key={b.cite} className="surface-card border-l-2 border-l-accent/50 px-5 py-4">
+              <p className="text-sm leading-relaxed text-navy">{b.cite}</p>
+              <p className="mt-1.5 text-sm text-muted">{b.note}</p>
             </li>
           ))}
         </ul>
       </Section>
 
-      <Section className="border-t border-rule">
+      <Section tint className="border-t border-rule">
+        <p className="eyebrow mb-3">External</p>
         <h2 className="text-2xl md:text-3xl">External links</h2>
-        <ul className="mt-6 space-y-2 text-muted">
-          <li>
+        <ul className="mt-6 space-y-3 text-muted">
+          <li className="surface-card px-5 py-4">
             <a
               href="https://www.fda.gov/"
-              className="text-teal underline underline-offset-2"
+              className="font-medium text-teal underline underline-offset-2"
               rel="noopener noreferrer"
               target="_blank"
             >
               U.S. Food and Drug Administration
-            </a>{" "}
-            — device regulation and MXR program materials
+            </a>
+            <p className="mt-1 text-sm">Device regulation and MXR program materials</p>
           </li>
-          <li>
+          <li className="surface-card px-5 py-4">
             <a
               href="mailto:OSEL_ARVR@fda.hhs.gov"
-              className="text-teal underline underline-offset-2"
+              className="font-medium text-teal underline underline-offset-2"
             >
               OSEL_ARVR@fda.hhs.gov
-            </a>{" "}
-            — FDA CDRH MXR research contact (public)
+            </a>
+            <p className="mt-1 text-sm">FDA CDRH MXR research contact (public)</p>
           </li>
         </ul>
       </Section>

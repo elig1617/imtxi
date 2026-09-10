@@ -25,13 +25,13 @@ export function FormField({
   rows = 4,
 }: Props) {
   const fieldCls =
-    "mt-1.5 w-full rounded-sm border border-navy/20 bg-ground px-3 py-2.5 text-sm text-navy outline-none focus:border-accent";
+    "mt-1.5 w-full rounded-sm border border-navy/15 bg-ground px-3.5 py-2.5 text-sm text-navy shadow-[inset_0_1px_2px_rgba(16,36,62,0.04)] outline-none transition-colors placeholder:text-muted/60 focus:border-accent focus:ring-2 focus:ring-accent/20";
 
   return (
     <div>
-      <label htmlFor={name} className="block text-sm font-medium text-navy">
+      <label htmlFor={name} className="block text-sm font-semibold text-navy">
         {label}
-        {required && <span className="text-accent"> *</span>}
+        {required && <span className="font-normal text-accent"> *</span>}
       </label>
       {as === "textarea" ? (
         <textarea
@@ -43,7 +43,13 @@ export function FormField({
           className={fieldCls}
         />
       ) : as === "select" ? (
-        <select id={name} name={name} required={required} className={fieldCls} defaultValue="">
+        <select
+          id={name}
+          name={name}
+          required={required}
+          className={fieldCls}
+          defaultValue=""
+        >
           <option value="" disabled>
             Select…
           </option>
@@ -63,7 +69,7 @@ export function FormField({
           className={fieldCls}
         />
       )}
-      {help && <p className="mt-1 text-xs text-muted">{help}</p>}
+      {help && <p className="mt-1.5 text-xs leading-relaxed text-muted">{help}</p>}
     </div>
   );
 }
