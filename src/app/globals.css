@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --imtxi-navy: #10243E;
+  --imtxi-ground: #FAF9F6;
+  --imtxi-teal: #0B3B3C;
+  --imtxi-accent: #9A7B4F;
+  --imtxi-muted: #5A6570;
+  --imtxi-on-dark: #FAF9F6;
+  --imtxi-rule: rgba(16, 36, 62, 0.12);
+}
+
+@theme inline {
+  --color-navy: #10243E;
+  --color-ground: #FAF9F6;
+  --color-teal: #0B3B3C;
+  --color-accent: #9A7B4F;
+  --color-muted: #5A6570;
+  --color-on-dark: #FAF9F6;
+  --color-rule: rgba(16, 36, 62, 0.12);
+  --font-serif: var(--font-source-serif);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--imtxi-ground);
+  color: var(--imtxi-navy);
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-source-serif), "Source Serif 4", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--imtxi-navy);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(154, 123, 79, 0.25);
+}
+
+.prose-imtxi p + p {
+  margin-top: 1.25rem;
+}
+
+.prose-imtxi a {
+  color: var(--imtxi-teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.measure {
+  max-width: 68ch;
+}

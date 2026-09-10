@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128.00 128.00" role="img" aria-label="IMTXI">
+  <title>IMTXI — Institute for Immersive Therapeutics</title>
+  <rect width="100%" height="100%" fill="#FAF9F6"/>
+  <g transform="translate(24.00 24.00)">
+    <path d="M 9.60 0.00 L 70.40 0.00 L 78.40 22.40 L 1.60 22.40 Z" fill="#10243E"/>
+    <path d="M 1.60 51.20 L 40.00 28.80 L 78.40 51.20 L 62.40 51.20 L 40.00 38.21 L 17.60 51.20 Z" fill="#10243E"/>
+    <path d="M 8.00 80.00 L 40.00 57.60 L 72.00 80.00 L 57.60 80.00 L 40.00 67.01 L 22.40 80.00 Z" fill="#10243E"/>
+  </g>
+</svg>
